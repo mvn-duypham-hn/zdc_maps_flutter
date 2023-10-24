@@ -35,7 +35,7 @@ class ZDCMapView: NSObject, FlutterPlatformView, ZMSMapViewDelegate {
         super.init()
         
         _mapView.delegate = self
-        _mapView.mapType = _mapView.mapTypeList[0]
+        _mapView.mapType = _mapView.mapTypeList[1]
         
         _mapView.addObserver(self, forKeyPath: "frame", options: [], context: nil)
     }
