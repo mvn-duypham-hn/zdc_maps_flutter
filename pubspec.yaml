@@ -5,20 +5,22 @@ publish_to: none
 homepage:
 
 environment:
-  sdk: '>=3.1.1 <4.0.0'
-  flutter: '>=3.3.0'
+  sdk: ">=3.1.1 <4.0.0"
+  flutter: ">=3.3.0"
 
 dependencies:
   flutter:
     sdk: flutter
   zdc_maps_flutter_android:
-    url: https://github.com/mvn-duypham-hn/zdc_maps_flutter_android
-    ref: main
-#  zdc_maps_flutter_ios:
-#    path: ../zdc_maps_flutter_ios
+    git: 
+      url: https://github.com/mvn-duypham-hn/zdc_maps_flutter_android.git
+      ref: main
+  #  zdc_maps_flutter_ios:
+  #    path: ../zdc_maps_flutter_ios
   zdc_maps_flutter_platform_interface:
-    url: https://github.com/mvn-duypham-hn/zdc_maps_flutter_platform_interface
-    ref: main
+    git:
+      url: https://github.com/mvn-duypham-hn/zdc_maps_flutter_platform_interface.git
+      ref: main
   flutter_plugin_android_lifecycle: ^2.0.1
 
 dev_dependencies:
