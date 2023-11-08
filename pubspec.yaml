@@ -1,6 +1,7 @@
-name: zdc_maps_flutter_android
+name: zdc_maps_flutter
 description: A new Flutter plugin project.
 version: 0.0.1
+publish_to: none
 homepage:
 
 environment:
@@ -10,18 +11,22 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  plugin_platform_interface: ^2.0.2
-  flutter_plugin_android_lifecycle: ^2.0.1
-  stream_transform: ^2.1.0
+  zdc_maps_flutter_android:
+    url: https://github.com/mvn-duypham-hn/zdc_maps_flutter_android
+    ref: main
+#  zdc_maps_flutter_ios:
+#    path: ../zdc_maps_flutter_ios
   zdc_maps_flutter_platform_interface:
-    url: https://github.com/mvn-duypham-hn/zdc_maps_flutter.git
-    ref: feature/refactor_code
-    path: zdc_maps_flutter_platform_interface
+    url: https://github.com/mvn-duypham-hn/zdc_maps_flutter_platform_interface
+    ref: main
+  flutter_plugin_android_lifecycle: ^2.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  plugin_platform_interface: ^2.0.2
+  stream_transform: ^2.1.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -39,12 +44,11 @@ flutter:
   # All these are used by the tooling to maintain consistency when
   # adding or updating assets for this project.
   plugin:
-    implements: zdc_maps_flutter
     platforms:
       android:
-        package: vn.duypx.zdcmaps
-        pluginClass: ZdcMapsPlugin
-        dartPluginClass: ZdcMapsFlutterAndroid
+        default_package: zdc_maps_flutter_android
+      ios:
+        pluginClass: ZdcMapsFlutterPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
