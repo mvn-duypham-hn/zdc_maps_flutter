@@ -1,63 +1,91 @@
-import 'package:flutter/material.dart';
+// Copyright 2013 The Flutter Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 import 'dart:async';
 
-import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
 import 'package:zdc_maps_flutter/zdc_maps_flutter.dart';
+import 'package:zdc_maps_flutter_android/zdc_maps_flutter_android.dart';
+import 'package:zdc_maps_flutter_platform_interface/zdc_maps_flutter_platform_interface.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+import 'animate_camera.dart';
+import 'lite_mode.dart';
+import 'map_click.dart';
+import 'map_coordinates.dart';
+import 'map_map_id.dart';
+import 'map_ui.dart';
+import 'marker_icons.dart';
+import 'move_camera.dart';
+import 'padding.dart';
+import 'page.dart';
+import 'place_circle.dart';
+import 'place_marker.dart';
+import 'place_polygon.dart';
+import 'place_polyline.dart';
+import 'scrolling_map.dart';
+import 'snapshot.dart';
+import 'tile_overlay.dart';
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+final List<ZdcMapExampleAppPage> _allPages = <ZdcMapExampleAppPage>[
+  const MapUiPage(),
+  const MapCoordinatesPage(),
+  const MapClickPage(),
+  const AnimateCameraPage(),
+  const MoveCameraPage(),
+  const PlaceMarkerPage(),
+  const MarkerIconsPage(),
+  const ScrollingMapPage(),
+  const PlacePolylinePage(),
+  const PlacePolygonPage(),
+  const PlaceCirclePage(),
+  const PaddingPage(),
+  const SnapshotPage(),
+  const LiteModePage(),
+  const TileOverlayPage(),
+  const MapIdPage(),
+];
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
+/// MapsDemo is the Main Application.
+class MapsDemo extends StatelessWidget {
+  /// Default Constructor
+  const MapsDemo({super.key});
 
-class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
-  final _zdcMapsFlutterPlugin = ZdcMapsFlutter();
-
-  @override
-  void initState() {
-    super.initState();
-    initPlatformState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {
-      platformVersion =
-          await _zdcMapsFlutterPlugin.getPlatformVersion() ?? 'Unknown platform version';
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
+  void _pushPage(BuildContext context, ZdcMapExampleAppPage page) {
+    Navigator.of(context).push(MaterialPageRoute<void>(
+        builder: (_) => Scaffold(
+              appBar: AppBar(title: Text(page.title)),
+              body: page,
+            )));
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Plugin example app'),
-        ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+    // return Scaffold(
+    //   appBar: AppBar(
+    //     title: const Text('ZDC Map'),
+    //   ),
+    //   body: Container(
+    //     child: const ZdcMap(
+    //         initialCameraPosition:
+    //             CameraPosition(target: LatLng(35.68, 139.76), zoom: 14),
+    //         myLocationEnabled: true),
+    //   ),
+    // );
+    return Scaffold(
+      appBar: AppBar(title: const Text('ZdcMaps examples')),
+      body: ListView.builder(
+        itemCount: _allPages.length,
+        itemBuilder: (_, int index) => ListTile(
+          leading: _allPages[index].leading,
+          title: Text(_allPages[index].title),
+          onTap: () => _pushPage(context, _allPages[index]),
         ),
       ),
     );
   }
+}
+
+void main() {
+  runApp(const MaterialApp(home: MapsDemo()));
 }
