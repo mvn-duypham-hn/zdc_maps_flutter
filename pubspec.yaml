@@ -15,8 +15,10 @@ dependencies:
     git: 
       url: https://github.com/mvn-duypham-hn/zdc_maps_flutter_android.git
       ref: main
-  #  zdc_maps_flutter_ios:
-  #    path: ../zdc_maps_flutter_ios
+  zdc_maps_flutter_ios:
+    git:
+      url: https://github.com/mvn-duypham-hn/zdc_maps_flutter_ios.git
+      ref: main
   zdc_maps_flutter_platform_interface:
     git:
       url: https://github.com/mvn-duypham-hn/zdc_maps_flutter_platform_interface.git
@@ -50,7 +52,7 @@ flutter:
       android:
         default_package: zdc_maps_flutter_android
       ios:
-        pluginClass: ZdcMapsFlutterPlugin
+        default_package: zdc_maps_flutter_ios
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
