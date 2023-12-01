@@ -45,7 +45,7 @@ android {
         applicationId "vn.duypx.zdc_maps_flutter_example"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion flutter.minSdkVersion
+        minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -64,4 +64,7 @@ flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    implementation(name: 'zdcmap', ext: 'aar')
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+}

@@ -1,16 +1,28 @@
 name: zdc_maps_flutter
 description: A new Flutter plugin project.
 version: 0.0.1
+publish_to: none
 homepage:
 
 environment:
-  sdk: '>=3.1.1 <4.0.0'
-  flutter: '>=3.3.0'
+  sdk: ">=3.1.1 <4.0.0"
+  flutter: ">=3.3.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  plugin_platform_interface: ^2.0.2
+  zdc_maps_flutter_android:
+    git: 
+      url: https://github.com/mvn-duypham-hn/zdc_maps_flutter_android.git
+      ref: main
+  zdc_maps_flutter_ios:
+    git:
+      url: https://github.com/mvn-duypham-hn/zdc_maps_flutter_ios.git
+      ref: main
+  zdc_maps_flutter_platform_interface:
+    git:
+      url: https://github.com/mvn-duypham-hn/zdc_maps_flutter_platform_interface.git
+      ref: main
   flutter_plugin_android_lifecycle: ^2.0.1
 
 dev_dependencies:
@@ -18,6 +30,7 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^2.0.0
   plugin_platform_interface: ^2.0.2
+  stream_transform: ^2.1.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -37,10 +50,9 @@ flutter:
   plugin:
     platforms:
       android:
-        package: vn.duypx.zdc_maps_flutter
-        pluginClass: ZdcMapsFlutterPlugin
+        default_package: zdc_maps_flutter_android
       ios:
-        pluginClass: ZdcMapsFlutterPlugin
+        default_package: zdc_maps_flutter_ios
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
